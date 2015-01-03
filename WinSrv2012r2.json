@@ -35,9 +35,9 @@
         "virtualhw.productcompatibility" : "esx",
         "virtualhw.version" : "10",
         "cpuid.coresPerSocket": "16",
-        "memsize": "8192",
+        "memsize": "2048",
         "scsi0.virtualDev": "pvscsi",
-        "numvcpus": "8"
+        "numvcpus": "1"
       }
     }
     ],
