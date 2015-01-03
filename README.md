@@ -39,17 +39,21 @@ This is a simplified version of our Windows Server 2012 r2 packer template for E
     └── vmxnet3ndis6ver.dll</pre>
 
 ## VMware tools install info
+
 This doc will tell you how to get all the drivers and needed components for populating the FILES directory. 
 http://pubs.vmware.com/vsphere-55/topic/com.vmware.vsphere.vm_admin.doc/GUID-7E1225DC-9CC6-401A-BE40-D78110F9441C.html
 
 ## Windows .iso file
+
 I recommend getting ahold of a Windows Server 2012 r2 with update .iso to use. You will need to place the .iso into the ISO directory and make sure the checksum and file names match the template .json file. 
 
 ## Building the image
+
  To specify your local wsus Server
 you will need to make a copy of the Example-privatedata.json file. In this privatedata.json file add your windows image password, wsus IP and wsus group. You will need to have a wsus server setup with the groups and configured to allow the registry settings of the client to specify the group. 
 
 Building the image will require the var file as shown below.
+
 <code>
 packer build --force -var-file privatedata.json WinSrv2012r2.json
 </code>
