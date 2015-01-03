@@ -9,12 +9,10 @@ if (get-scheduledtask -taskname cleanupssh -ErrorAction SilentlyContinue) {
 	start-process -FilePath 'C:\windows\temp\uninst.exe' -ArgumentList '"Bitvise SSH Server" -unat' -wait -verb RunAs
 	Remove-Item -Path "HKLM:\SOFTWARE\Wow6432Node\Bitvise" -recurse
 	get-childitem -Recurse "C:\Program Files\Bitvise SSH Server" | remove-item -Recurse -Force -ErrorAction SilentlyContinue
-    remove-item "C:\Program Files\Bitvise SSH Server" -Recurse -Force -ErrorAction SilentlyContinue
-    
+	remove-item "C:\Program Files\Bitvise SSH Server" -Recurse -Force -ErrorAction SilentlyContinue
+
 	#Clean up the windows temp directory
-	#start-process -FilePath 'C:\windows\System32\Robocopy.exe' -ArgumentList '"C:\blank" "C:\Windows\Temp" /MIR' -wait -verb RunAs
 	get-childitem -Recurse "C:\Windows\Temp" | remove-item -Recurse -Force -ErrorAction SilentlyContinue 
-	#remove-item "C:\blank" -Recurse -Force
 	write-host "Finished cleaning C:\Windows\Temp"
 
 	#Start System halt
