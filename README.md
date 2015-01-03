@@ -19,7 +19,8 @@ Interesting parts of this template
 9. Installing VMware tools from a specific installer with powershell.
 
 Populating the FILES directory is required before build. 
-'''├── SDelete.zip             <--- http://download.sysinternals.com/files/SDelete.zip
+<pre>
+├── SDelete.zip             <--- http://download.sysinternals.com/files/SDelete.zip
 ├── certmgr.exe             <--- Part of VMware tools install
 ├── pvscsi                  <--- Extract from VMware tools installer http://kb.vmware.com/kb/2032184
 │   ├── pvscsi.cat
@@ -34,7 +35,8 @@ Populating the FILES directory is required before build.
     ├── vmxnet3n61x86.sys
     ├── vmxnet3ndis6.cat
     ├── vmxnet3ndis6.inf
-    └── vmxnet3ndis6ver.dll'''
+    └── vmxnet3ndis6ver.dll
+</pre>
 
 VMware tools install info..
 http://pubs.vmware.com/vsphere-55/topic/com.vmware.vsphere.vm_admin.doc/GUID-7E1225DC-9CC6-401A-BE40-D78110F9441C.html
