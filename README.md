@@ -7,6 +7,7 @@ Based off of https://github.com/joefitzgerald/packer-windows
 
 This is a simplified version of our Windows Server 2012 r2 packer template for ESXi/vCloud Director. I'm posting this to share some different approaches to building the windows image and related code. 
 
+Interesting parts of this template
 1. Boot from pvscsi virtual disk adapter. 
 2. Use vmxnet3 virtual network adapter.
 3. Build the image using a commercial ssh server from http://www.bitvise.com/ssh-server
@@ -15,10 +16,10 @@ This is a simplified version of our Windows Server 2012 r2 packer template for E
 6. Uninstalling the SSH server on shutdown. 
 7. Improved cleanup of the disk using dism for smaller vmdk size.
 8. Setting a wsus group and local IP to speed up build time. 
-9. Installing VMware tools from specific installer with powershell.
+9. Installing VMware tools from a specific installer with powershell.
 
 Populating the FILES directory is required before build. 
-├── SDelete.zip             <--- http://download.sysinternals.com/files/SDelete.zip
+'''├── SDelete.zip             <--- http://download.sysinternals.com/files/SDelete.zip
 ├── certmgr.exe             <--- Part of VMware tools install
 ├── pvscsi                  <--- Extract from VMware tools installer http://kb.vmware.com/kb/2032184
 │   ├── pvscsi.cat
@@ -33,7 +34,7 @@ Populating the FILES directory is required before build.
     ├── vmxnet3n61x86.sys
     ├── vmxnet3ndis6.cat
     ├── vmxnet3ndis6.inf
-    └── vmxnet3ndis6ver.dll
+    └── vmxnet3ndis6ver.dll'''
 
 VMware tools install info..
 http://pubs.vmware.com/vsphere-55/topic/com.vmware.vsphere.vm_admin.doc/GUID-7E1225DC-9CC6-401A-BE40-D78110F9441C.html
