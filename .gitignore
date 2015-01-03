@@ -1,0 +1,11 @@
+packer_cache
+FILES
+ISO
+VM
+crash.log
+.DS_Store
+packer-windows-master
+privatedata.json
+OVA
+logs/packer-build.log
+answer_files/.DS_Store

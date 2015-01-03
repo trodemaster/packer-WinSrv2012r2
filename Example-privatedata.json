@@ -1,0 +1,5 @@
+{
+  "itcloud_win_pass": "password1!",
+  "wsus_server":"192.168.151.182",
+  "wsus_group": "none"
+}

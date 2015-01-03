@@ -1,0 +1,121 @@
+{
+  "variables": {
+    "packer_win_pass": "{{env `PACKER_WIN_PASS`}}",
+    "wsus_server": "{{env `WSUS_SERVER`}}",
+    "wsus_group": "{{env `WSUS_GROUP`}}"
+  },
+  "builders": [
+    {
+      "type": "vmware-iso",
+      "skip_compaction": "false",
+      "output_directory": "VM/WinSrv2012r2",
+      "vm_name": "WinSrv2012r2",
+      "vmdk_name": "WinSrv2012r2",
+      "iso_url": "ISO/en_windows_server_2012_r2_vl_with_update_x64_dvd_4065221.iso",
+      "iso_checksum_type": "md5",
+      "iso_checksum": "b52450dd5ba8007e2934f5c6e6eda0ce",
+      "boot_wait": "6m",
+      "ssh_username": "packer",
+      "ssh_password": "packer1!",
+      "ssh_wait_timeout": "2h",
+      "shutdown_command": "C:/Windows/Temp/removeSSHshutdown.ps1",
+      "shutdown_timeout": "30m",
+      "guest_os_type": "windows8srv-64",
+      "disk_size": "102400",
+      "disk_type_id": "0",
+      "floppy_files": [
+        "answer_files/2012_r2/Autounattend.xml",
+        "scripts/bitvisessh.ps1",
+        "scripts/bitvisessh.cfg",
+        "FILES/pvscsi",
+        "FILES/vmxnet3"
+        ],
+      "vmx_data": {
+        "ethernet0.virtualdev" : "vmxnet3",
+        "virtualhw.productcompatibility" : "esx",
+        "virtualhw.version" : "10",
+        "cpuid.coresPerSocket": "16",
+        "memsize": "8192",
+        "scsi0.virtualDev": "pvscsi",
+        "numvcpus": "8"
+      }
+    }
+    ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "scripts/removeSSHshutdown.ps1",
+      "destination": "C:/Windows/Temp/removeSSHshutdown.ps1"
+    },
+    {
+      "type": "file",
+      "source": "FILES/setup64.exe",
+      "destination": "C:/Windows/Temp/setup64.exe"
+    },
+    {
+      "type": "file",
+      "source": "FILES/ultradefrag-portable-6.0.4.bin.amd64.zip",
+      "destination": "C:/Windows/Temp/ultradefrag-portable-6.0.4.bin.amd64.zip"
+    },
+    {
+      "type": "file",
+      "source": "FILES/SDelete.zip",
+      "destination": "C:/Windows/Temp/SDelete.zip"
+    },
+    {
+      "type": "file",
+      "source": "FILES/vmware.cer",
+      "destination": "C:/Windows/Temp/vmware.cer"
+    },    
+    {
+      "type": "file",
+      "source": "FILES/certmgr.exe",
+      "destination": "C:/Windows/Temp/certmgr.exe"
+    },
+    {
+      "type": "shell",
+      "remote_path": "C:/windows/temp/tools-win.ps1",
+      "binary": "true",
+      "execute_command": "/Windows/Temp/tools-win.ps1",
+      "script": "scripts/tools-win.ps1"
+    },
+    {
+      "type": "shell",
+
+      "pause_before": "3m",
+      "remote_path": "C:/Windows/temp/wsus_client.ps1",
+      "execute_command": "/Windows/Temp/wsus_client.ps1 -server {{user `wsus_server`}} -group {{user `wsus_group`}}",      
+      "binary": "true",
+      "script": "scripts/wsus_client.ps1"
+    },
+    {
+      "type": "shell",
+      "remote_path": "C:/Windows/temp/win-updates.ps1",
+      "execute_command": "/Windows/Temp/win-updates.ps1",      
+      "binary": "true",
+      "script": "scripts/win-updates.ps1"
+    },
+    {
+      "type": "shell",
+      "start_retry_timeout": "2h",
+      "remote_path": "C:/windows/temp/win-svr-packer.ps1",
+      "binary": "true",
+      "execute_command": "C:/Windows/Temp/win-svr-packer.ps1",
+      "script": "scripts/win-svr-packer.ps1"
+    },    
+    {
+      "type": "shell",
+      "remote_path": "C:/windows/temp/cleanup_compact.ps1",
+      "execute_command": "C:/Windows/Temp/cleanup_compact.ps1",      
+      "binary": "true",
+      "script": "scripts/cleanup_compact.ps1"
+    },
+    {
+      "type": "shell",
+      "remote_path": "C:/windows/temp/setpass.ps1",
+      "execute_command": "C:/Windows/Temp/setpass.ps1 -pass {{user `packer_win_pass`}}",      
+      "binary": "true",
+      "script": "scripts/setpass.ps1"
+    }
+  ]
+} 
