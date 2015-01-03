@@ -38,7 +38,8 @@ This is a simplified version of our Windows Server 2012 r2 packer template for E
     ├── vmxnet3ndis6.inf
     └── vmxnet3ndis6ver.dll</pre>
 
-## VMware tools install info..
+## VMware tools install info
+This doc will tell you how to get all the drivers and needed components for populating the FILES directory. 
 http://pubs.vmware.com/vsphere-55/topic/com.vmware.vsphere.vm_admin.doc/GUID-7E1225DC-9CC6-401A-BE40-D78110F9441C.html
 
 ## Windows .iso file
