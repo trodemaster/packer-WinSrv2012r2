@@ -1,4 +1,4 @@
-#Powershell version of install vmware tools via task scheduler
+#Uninstall SSH server and shutdown VM cleanly
 $host.ui.RawUI.WindowTitle = "removeSSHshutdown.ps1"
 
 #check if scheduled task called cleanupssh exists install VMware tools
