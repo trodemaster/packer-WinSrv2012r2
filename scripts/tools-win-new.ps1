@@ -5,11 +5,12 @@ write-host "Installed VMware cert..."
 
 Write-Host "Installing VMWare Tools..."
 #Run vmware tools installer
-$p = start-process -FilePath 'C:/Windows/Temp/setup64.exe' -ArgumentList '/S /v "/qn /l*v ""C:\windows\temp\vmwtoolsinstall.log"" ADDLOCAL=ALL REMOVE=Hgfs REBOOT=R"' -PassThru
+$p = start-process -FilePath 'C:/Windows/Temp/setup64.exe' -ArgumentList '/S /v "/qn /l*v ""C:\windows\temp\vmwtoolsinstall.log"" ADDLOCAL=ALL REMOVE=Hgfs"' -PassThru
 
 #Wait for tools installer to finish
 write-host "Waiting for VMware tools to install"
-wait-process -name setup64
+#wait-process -name setup64
+start-sleep -s 90
 write-host "Done Waiting for VMware tools to install"
 
 if ($p.ExitCode -eq 0) {
