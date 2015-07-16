@@ -2,3 +2,4 @@ packer_cache
 crash.log
 .DS_Store
 privatedata.json
+logs
