@@ -91,11 +91,24 @@
     },
     {
       "type": "powershell",
+       "inline": ["write-host before tools"]
+    },
+    {
+      "type": "powershell",
       "elevated_user": "packer",
       "elevated_password": "packer1!",
       "scripts": "scripts/tools-win-new.ps1",
       "remote_path": "c:/windows/temp/tools-win-new.ps1",
-      "execute_command": "c:/windows/temp/tools-win-new.ps1"
-    }
+      "execute_command": "powershell c:/windows/temp/tools-win-new.ps1; exit 0",
+      "valid_exit_codes": "0,3010"
+    },
+    {
+      "type": "powershell",
+       "inline": ["write-host after tools"]
+    },
+    {
+      "type": "windows-restart",
+      "restart_command": "shutdown /r /c \"packer restart\" /t 120 && net stop winrm"
+    }  
   ]
 } 
