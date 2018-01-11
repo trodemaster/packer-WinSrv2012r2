@@ -1,6 +1,11 @@
 packer-WinSrv2012r2
 ===================
 
+*This packer workflow is very dated at this point. It will not work out of the box with current versions of packer. Additionaly it doesn't use winrm which is highly advised for building windows images. Take a look at this newer repo for a current template for windows.* 
+
+# H1 ---> https://github.com/trodemaster/packer-win-pc
+
+
 packer.io template and related scripts for building Windows Server 2012 r2 ESXi virtual machines. 
 
 Based off of https://github.com/joefitzgerald/packer-windows
